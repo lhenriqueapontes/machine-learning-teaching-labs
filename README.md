@@ -1,50 +1,49 @@
 # Machine Learning Teaching Labs
 
-Projeto didatico com scripts simples para ensinar machine learning com Python.
+**Portfólio docente em Computação:** laboratórios reproduzíveis de aprendizado de máquina com Python e materiais de aula.
 
-## Como executar
+> Material demonstrativo. Não se trata de uma disciplina oficialmente oferecida ou de comprovação de aulas ministradas.
+
+## Laboratório 1 — Iris: introdução à classificação
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python src/iris_lab.py --output-dir reports
 ```
 
-## Saidas
+O script original usa regressão logística e gera acurácia e matriz de confusão.
 
-- `reports/iris_metrics.csv`
-- `reports/iris_confusion_matrix.csv`
+## Laboratório 2 — Comparação de modelos e validação cruzada
 
-## Conteudo
-
-O primeiro laboratorio usa o dataset Iris do scikit-learn para mostrar:
-
-- separacao treino/teste;
-- treinamento de regressao logistica;
-- predicao;
-- acuracia;
-- matriz de confusao.
-
-## Estrutura
-
-```text
-src/iris_lab.py
-reports/
-requirements.txt
+```bash
+python src/model_comparison.py --output-dir reports
 ```
 
-## Proximos laboratorios
+Este módulo compara **regressão logística** e **k-NN** com:
+- Separação estratificada treino/teste, usando o teste apenas no fim;
+- `StandardScaler` dentro de pipelines (para evitar vazamento de dados);
+- Validação cruzada estratificada de 5 folds usando somente treino;
+- Acurácia média e desvio na CV, acurácia de teste, F1 macro e matrizes de confusão.
 
-- regressao linear;
-- k-NN;
-- arvores de decisao;
-- validacao cruzada;
-- metricas de classificacao;
-- perceptron.
+Saídas: `reports/model_comparison.csv` e duas matrizes de confusão com rótulos de classe.
 
-## Dados
+## Plano de aula para demonstração docente
 
-Usa datasets publicos do scikit-learn ou dados sinteticos.
+Consulte **[Plano de aula de 50 minutos](docs/plano_de_aula_iris.md)**, com objetivos mensuráveis, roteiro de atividades, exercícios, rubrica de avaliação e limitações.
 
-## Licenca
+## Verificar testes
 
-MIT License.
+```bash
+python -m pip install pytest
+python -m pytest -q
+```
+
+O workflow em `.github/workflows/teaching-tests.yml` executa verificações em pull requests.
+
+## Limitações
+
+O Iris é um dataset público e pequeno, adequado a demonstração de conceitos. O laboratório **não** demonstra uso real de IA clínica ou resultados empresariais. Novas aulas sobre regressão, árvores, seleção de hiperparâmetros e visão computacional podem ser adicionadas após validar esta base.
+
+## Licença
+
+MIT — consultar `LICENSE`.
